@@ -1,0 +1,44 @@
+<h3 class="my-5">Select Payment Type</h3>
+
+<ng-container
+  *ngTemplateOutlet="paymentsList; context: { payments: payments$ | async }"
+></ng-container>
+
+<div class="row my-5">
+  <div class="col-3">
+    <p>On delivery type changed</p>
+    <button class="btn btn-primary" (click)="refreshPaymentTypes()">
+      Refrech Payment Types
+    </button>
+  </div>
+  <div class="col-3">
+    <p>Simulate API error</p>
+    <button class="btn btn-primary" (click)="errorPaymentTypes()">
+      Error Payment Types
+    </button>
+  </div>
+</div>
+
+<div class="container d-flex">
+  <button class="btn btn-primary mr-5" (click)="handleLogin()">Login</button>
+</div>
+
+<!-- <ng-container
+*ngTemplateOutlet="paymentsList; context: { payments: payments$ | async }"
+></ng-container> -->
+
+<ng-template #paymentsList let-payments="payments">
+  <p>{{ payments?.length }} available</p>
+  <div class="d-flex">
+    <div
+      *ngFor="let payment of payments; trackBy: 'id' | trackByProperty"
+      class="payment-card card mr-5"
+      [class.active]="payment.isSelected"
+    >
+      <div class="card-body">
+        <h6 class="card-title">{{ payment.title }}</h6>
+        <p class="card-text">{{ payment.shortDescription }}</p>
+      </div>
+    </div>
+  </div>
+</ng-template>

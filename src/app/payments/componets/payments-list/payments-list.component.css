@@ -1,0 +1,8 @@
+.payment-card {
+  min-width: 165px;
+}
+
+.payment-card.active {
+  border-width: 2px;
+  border-color: orange;
+}
